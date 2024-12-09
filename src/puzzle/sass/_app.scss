@@ -1,0 +1,76 @@
+@use 'variable' as *;
+
+.wrapper {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.header {
+  height: 100px;
+  background-color: $navy;
+  text-align: right;
+  font-size: 0;
+
+  @each $className in $classNames {
+    $index_key: index($classNames, $className);
+
+    .button_#{$className} {
+      display: inline-block;
+      height: 40px;
+      width: 40px;
+      border: 10px solid $white;
+      margin-top: 20px;
+      background-color: nth($buttonColor, $index_key);
+
+      @if $index_key == 1 {
+        border-right: 0;
+      }
+      @else if $index_key == 3 {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.sidebar {
+  height: 250px;
+  width: 150px;
+  background-color: $green;
+  float: left;
+}
+
+.main {
+  height: 250px;
+  width: 250px;
+  background-color: $red;
+  float: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @each $className in $classNames {
+    $index_key: index($classNames, $className);
+
+    .button_#{$className} {
+      height: 40px;
+      width: 140px;
+      border: 5px solid $white;
+      margin-left: 40px;
+      background-color: nth($buttonColor, $index_key);
+
+      @if $index_key == 1 {
+        margin-top: 40px;
+      }
+      @else if $index_key == 3 {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}
+
+.footer {
+  height: 100px;
+  width: 400px;
+  background-color: $brown;
+  display: flex;
+}
